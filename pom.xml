@@ -11,8 +11,8 @@
     <groupId>com.songthematic</groupId>
     <artifactId>songthemes</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>songthemes</name>
-    <description>Jitted Ted Song Themes</description>
+    <name>song-themes</name>
+    <description>Jitter Ted Song Themes</description>
     <properties>
         <java.version>17</java.version>
     </properties>
