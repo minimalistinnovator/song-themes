@@ -22,16 +22,20 @@ public class SongSearcher {
         return createSongSearcher(song);
     }
 
+    public static SongSearcher withMultipleSongs(List<Song> songs) {
+        return createSongSearcher(songs.toArray(new Song[songs.size()]));
+    }
+
     public List<String> byTheme(String requestedTheme) {
 
         if (requestedTheme.equalsIgnoreCase(this.song.theme())) {
-            return List.of(song.songTitle());
+            return List.of(song.title());
         }
 
         return Collections.emptyList();
     }
 
-    private static SongSearcher createSongSearcher(Song song) {
-        return new SongSearcher(song);
+    private static SongSearcher createSongSearcher(Song... songs) {
+        return new SongSearcher(songs[0]);
     }
 }

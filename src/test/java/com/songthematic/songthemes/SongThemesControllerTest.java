@@ -50,4 +50,24 @@ public class SongThemesControllerTest {
         List<SongView> searchResults = (List<SongView>) model.getAttribute("searchResults");
         assertThat(searchResults).containsExactly(new SongView("aud lang syne"));
     }
+
+    @Test
+    public void searchReturnsModelWithMultipleSearchResults() throws Exception {
+        String theme = "new years";
+        SongThemesController songThemesController = new SongThemesController(
+                SongSearcher.withMultipleSongs(List.of(
+                        new Song(theme, "aud lang syne"),
+                        new Song(theme, "New Year's Eve is a Haunted House")
+                )));
+        Model model = new ConcurrentModel();
+
+        songThemesController.themeSearch("new years", model);
+
+        assertThat(model.getAttribute("emptySearchResults"))
+                .isEqualTo(Boolean.FALSE);
+        List<SongView> searchResults = (List<SongView>) model.getAttribute("searchResults");
+        assertThat(searchResults).containsExactly(
+                new SongView("aud lang syne"),
+                new SongView("New Year's Eve is a Haunted House"));
+    }
 }
