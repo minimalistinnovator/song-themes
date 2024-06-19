@@ -8,9 +8,17 @@ public class SongSearcher {
     private final String song;
     private final String theme;
 
-    public SongSearcher(String theme, String song) {
+    private SongSearcher(String theme, String song) {
         this.theme = theme;
         this.song = song;
+    }
+
+    public static SongSearcher withSongsForTheme(String theme) {
+        return new SongSearcher(theme, String.format("Songs with theme %s", theme));
+    }
+
+    public static SongSearcher withOneSong(String theme, String song) {
+        return new SongSearcher(theme, song);
     }
 
     public List<String> byTheme(String requestedTheme) {
