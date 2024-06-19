@@ -13,12 +13,12 @@ public class SongSearcher {
         this.song = song;
     }
 
-    public static SongSearcher withSongsForTheme(String theme) {
-        return new SongSearcher(theme, String.format("Songs with theme %s", theme));
+    public static SongSearcher withNoSongs(String theme) {
+        return createSongSearcher(theme, String.format("Songs with theme %s", theme));
     }
 
     public static SongSearcher withOneSong(String theme, String song) {
-        return new SongSearcher(theme, song);
+        return createSongSearcher(theme, song);
     }
 
     public List<String> byTheme(String requestedTheme) {
@@ -28,5 +28,9 @@ public class SongSearcher {
         }
 
         return Collections.emptyList();
+    }
+
+    private static SongSearcher createSongSearcher(String theme, String song) {
+        return new SongSearcher(theme, song);
     }
 }

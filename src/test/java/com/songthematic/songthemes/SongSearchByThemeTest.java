@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SongSearchByThemeTest {
     @Test
     public void searchForThemeThatDoesNotExistReturnsNoResults() throws Exception {
-        SongSearcher songSearcher = SongSearcher.withSongsForTheme("new years");
+        SongSearcher songSearcher = SongSearcher.withNoSongs("new years");
 
         List<String> foundSongs = songSearcher.byTheme("Applesauce");
 
