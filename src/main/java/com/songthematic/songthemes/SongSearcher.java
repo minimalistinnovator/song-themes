@@ -4,10 +4,19 @@ import java.util.Collections;
 import java.util.List;
 
 public class SongSearcher {
-    public List<String> byTheme(String theme) {
 
-        if (theme.equalsIgnoreCase("new years")) {
-            return List.of("auld lang syne");
+    private final String song;
+    private final String theme;
+
+    public SongSearcher(String theme, String song) {
+        this.theme = theme;
+        this.song = song;
+    }
+
+    public List<String> byTheme(String requestedTheme) {
+
+        if (requestedTheme.equalsIgnoreCase(this.theme)) {
+            return List.of(song);
         }
 
         return Collections.emptyList();
