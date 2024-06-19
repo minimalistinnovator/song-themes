@@ -26,7 +26,7 @@ public class SongThemesControllerTest {
         String theme = "new years";
         String songTitle = "aud lang syne";
         SongThemesController songThemesController = new SongThemesController(
-                SongSearcher.withOneSong(theme, songTitle));
+                SongSearcher.withOneSong(new Song(theme, songTitle)));
         Model model = new ConcurrentModel();
 
         songThemesController.themeSearch("christmas", model);
@@ -40,7 +40,7 @@ public class SongThemesControllerTest {
         String theme = "new years";
         String songTitle = "aud lang syne";
         SongThemesController songThemesController = new SongThemesController(
-                SongSearcher.withOneSong(theme, songTitle));
+                SongSearcher.withOneSong(new Song(theme, songTitle)));
         Model model = new ConcurrentModel();
 
         songThemesController.themeSearch("new years", model);

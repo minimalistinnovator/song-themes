@@ -13,6 +13,8 @@ public class SongThemesApplication {
 
     @Bean
     public SongSearcher songSearcher() {
-        return SongSearcher.withOneSong("new years", "auld lang syne");
+        return SongSearcher.withOneSong(new Song(
+                "new years", "auld lang syne"
+        ));
     }
 }

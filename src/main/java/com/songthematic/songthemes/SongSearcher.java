@@ -5,32 +5,33 @@ import java.util.List;
 
 public class SongSearcher {
 
-    private final String song;
-    private final String theme;
+    private final Song song;
 
-    private SongSearcher(String theme, String song) {
-        this.theme = theme;
+    private SongSearcher(Song song) {
         this.song = song;
     }
 
     public static SongSearcher withNoSongs(String theme) {
-        return createSongSearcher(theme, String.format("Songs with theme %s", theme));
+        return createSongSearcher(new Song(
+                theme,
+                String.format("Songs with theme %s", theme)
+        ));
     }
 
-    public static SongSearcher withOneSong(String theme, String song) {
-        return createSongSearcher(theme, song);
+    public static SongSearcher withOneSong(Song song) {
+        return createSongSearcher(song);
     }
 
     public List<String> byTheme(String requestedTheme) {
 
-        if (requestedTheme.equalsIgnoreCase(this.theme)) {
-            return List.of(song);
+        if (requestedTheme.equalsIgnoreCase(this.song.theme())) {
+            return List.of(song.songTitle());
         }
 
         return Collections.emptyList();
     }
 
-    private static SongSearcher createSongSearcher(String theme, String song) {
-        return new SongSearcher(theme, song);
+    private static SongSearcher createSongSearcher(Song song) {
+        return new SongSearcher(song);
     }
 }
