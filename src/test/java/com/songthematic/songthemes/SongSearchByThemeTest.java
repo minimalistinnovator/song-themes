@@ -18,4 +18,14 @@ public class SongSearchByThemeTest {
         assertThat(foundSongs)
                 .isEmpty();
     }
+
+    @Test
+    public void searchForThemeFindsOneMatchingSong() throws Exception {
+        SongSearcher songSearcher = new SongSearcher();
+
+        List<String> foundSongs = songSearcher.byTheme("New Years");
+
+        assertThat(foundSongs)
+                .containsExactly("auld lang syne");
+    }
 }

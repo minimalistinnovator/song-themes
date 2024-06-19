@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class SongthemesApplication {
+public class SongThemesApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SongthemesApplication.class, args);
+        SpringApplication.run(SongThemesApplication.class, args);
     }
 
     @Bean
