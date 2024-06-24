@@ -1,7 +1,6 @@
 package com.songthematic.songthemes;
 
 import org.junit.Test;
-import org.junit.jupiter.api.Disabled;
 import org.springframework.ui.ConcurrentModel;
 import org.springframework.ui.Model;
 
@@ -53,7 +52,6 @@ public class SongThemesControllerTest {
     }
 
     @Test
-    @Disabled
     public void searchReturnsModelWithMultipleSearchResults() throws Exception {
         String theme = "new years";
         SongThemesController songThemesController = new SongThemesController(
