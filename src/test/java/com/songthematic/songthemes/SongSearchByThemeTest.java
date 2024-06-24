@@ -52,4 +52,17 @@ public class SongSearchByThemeTest {
                         "auld lang syne",
                         "New Year's Eve In a Haunted House");
     }
+
+    @Test
+    public void forSongsWithMultipleThemesSearchFindsAllSongs() throws Exception {
+        SongSearcher songSearcher = SongSearcher.withMultipleSongs(
+                new Song("new years", "auld lang syne"),
+                new Song("christmas", "The Christmas Tree is on Fire")
+        );
+
+        assertThat(songSearcher.byTheme("new years"))
+                .containsExactly("auld lang syne");
+        assertThat(songSearcher.byTheme("Christmas"))
+                .containsExactly("The Christmas Tree is on Fire");
+    }
 }
