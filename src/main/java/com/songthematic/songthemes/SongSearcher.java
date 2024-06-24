@@ -7,10 +7,10 @@ import java.util.Map;
 
 public class SongSearcher {
 
-    private final Map<String, Song> songs = new HashMap<>();
+    private final Map<String, List<Song>> songs = new HashMap<>();
 
     private SongSearcher(Song... songs) {
-        this.songs.put(songs[0].theme().toLowerCase(), songs[0]);
+        this.songs.put(songs[0].theme().toLowerCase(), List.of(songs[0]));
     }
 
     public static SongSearcher withNoSongs(String theme) {
@@ -29,10 +29,13 @@ public class SongSearcher {
     }
 
     public List<String> byTheme(String requestedTheme) {
-        Song foundSong = songs.get(requestedTheme.toLowerCase());
+        List<Song> matchingSongs = songs.get(requestedTheme.toLowerCase());
 
-        if (foundSong != null) {
-            return List.of(foundSong.title());
+        if (matchingSongs != null) {
+            return matchingSongs
+                    .stream()
+                    .map(Song::title)
+                    .toList();
         }
 
         return Collections.emptyList();
