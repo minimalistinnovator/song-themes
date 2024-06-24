@@ -1,4 +1,4 @@
-package com.songthematic.songthemes;
+package com.songthematic.songthemes.adapter.in.web;
 
 import org.junit.Test;
 import org.junit.jupiter.api.Tag;
