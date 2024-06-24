@@ -57,10 +57,10 @@ public class SongThemesControllerTest {
     public void searchReturnsModelWithMultipleSearchResults() throws Exception {
         String theme = "new years";
         SongThemesController songThemesController = new SongThemesController(
-                SongSearcher.withMultipleSongs(List.of(
+                SongSearcher.withMultipleSongs(
                         new Song(theme, "aud lang syne"),
                         new Song(theme, "New Year's Eve is a Haunted House")
-                )));
+                ));
         Model model = new ConcurrentModel();
 
         songThemesController.themeSearch("new years", model);

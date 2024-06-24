@@ -1,7 +1,6 @@
 package com.songthematic.songthemes;
 
 import org.junit.Test;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -40,12 +39,11 @@ public class SongSearchByThemeTest {
     }
 
     @Test
-    @Disabled
     public void searchForThemeFindsMultipleMatchingSongs() throws Exception {
-        SongSearcher songSearcher = SongSearcher.withMultipleSongs(List.of(
+        SongSearcher songSearcher = SongSearcher.withMultipleSongs(
                 new Song("new years", "auld lang syne"),
                 new Song("new years", "New Year's Eve In a Haunted House")
-        ));
+        );
 
         List<String> foundSongs = songSearcher.byTheme("New Years");
 

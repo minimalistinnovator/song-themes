@@ -1,16 +1,14 @@
 package com.songthematic.songthemes;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SongSearcher {
 
-    private final Map<String, List<Song>> songs = new HashMap<>();
+    private final Map<String, List<Song>> themeToSongsMap = new HashMap<>();
 
     private SongSearcher(Song... songs) {
-        this.songs.put(songs[0].theme().toLowerCase(), List.of(songs[0]));
+        List<Song> songsList = Arrays.asList(songs);
+        this.themeToSongsMap.put(songs[0].theme().toLowerCase(), songsList);
     }
 
     public static SongSearcher withNoSongs(String theme) {
@@ -24,12 +22,12 @@ public class SongSearcher {
         return createSongSearcher(song);
     }
 
-    public static SongSearcher withMultipleSongs(List<Song> songs) {
-        return createSongSearcher(songs.toArray(new Song[songs.size()]));
+    public static SongSearcher withMultipleSongs(Song... songs) {
+        return createSongSearcher(songs);
     }
 
     public List<String> byTheme(String requestedTheme) {
-        List<Song> matchingSongs = songs.get(requestedTheme.toLowerCase());
+        List<Song> matchingSongs = themeToSongsMap.get(requestedTheme.toLowerCase());
 
         if (matchingSongs != null) {
             return matchingSongs
@@ -43,6 +41,6 @@ public class SongSearcher {
     }
 
     private static SongSearcher createSongSearcher(Song... songs) {
-        return new SongSearcher(songs[0]);
+        return new SongSearcher(songs);
     }
 }
