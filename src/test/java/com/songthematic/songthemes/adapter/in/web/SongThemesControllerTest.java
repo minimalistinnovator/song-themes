@@ -13,14 +13,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SongThemesControllerTest {
 
     @Test
-    public void searchReturnsSearchResultsView() throws Exception {
+    public void searchReturnsMatchingSearchResultsView() throws Exception {
         SongThemesController songThemesController = new SongThemesController(
-                SongSearcher.withNoSongs("new years"));
+                SongSearcher.withOneSong(
+                        new Song("new years", "irrelevant song title")));
         Model model = new ConcurrentModel();
 
-        String viewName = songThemesController.themeSearch("christmas", model);
+        String viewName = songThemesController.themeSearch("new years", model);
 
-        assertThat(viewName).isEqualTo("theme-search-results");
+        assertThat(viewName).isEqualTo("theme-search-has-results");
     }
 
     @Test
@@ -31,10 +32,8 @@ public class SongThemesControllerTest {
                 SongSearcher.withOneSong(new Song(theme, songTitle)));
         Model model = new ConcurrentModel();
 
-        songThemesController.themeSearch("christmas", model);
-
-        assertThat(model.getAttribute("emptySearchResults"))
-                .isEqualTo(Boolean.TRUE);
+        String viewName = songThemesController.themeSearch("christmas", model);
+        assertThat(viewName).isEqualTo("theme-search-no-results");
     }
 
     @Test
@@ -47,8 +46,6 @@ public class SongThemesControllerTest {
 
         songThemesController.themeSearch("new years", model);
 
-        assertThat(model.getAttribute("emptySearchResults"))
-                .isEqualTo(Boolean.FALSE);
         List<SongView> searchResults = (List<SongView>) model.getAttribute("searchResults");
         assertThat(searchResults).containsExactly(new SongView("aud lang syne"));
     }
@@ -65,8 +62,6 @@ public class SongThemesControllerTest {
 
         songThemesController.themeSearch("new years", model);
 
-        assertThat(model.getAttribute("emptySearchResults"))
-                .isEqualTo(Boolean.FALSE);
         List<SongView> searchResults = (List<SongView>) model.getAttribute("searchResults");
         assertThat(searchResults).containsExactly(
                 new SongView("aud lang syne"),

@@ -26,8 +26,12 @@ public class SongThemesController {
                 .stream()
                 .map(SongView::new)
                 .toList();
-        model.addAttribute("emptySearchResults", foundSongs.isEmpty());
-        model.addAttribute("searchResults", songViews);
-        return "theme-search-results";
+
+        if (songViews.isEmpty()) {
+            return "theme-search-no-results";
+        } else {
+            model.addAttribute("searchResults", songViews);
+            return "theme-search-has-results";
+        }
     }
 }
