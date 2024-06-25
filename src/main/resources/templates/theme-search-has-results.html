@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"
+<html
+        lang="en"
+        xmlns:th="https://www.thymeleaf.org"
 >
 <head>
     <meta charset="UTF-8">
@@ -7,5 +9,8 @@
 </head>
 <body>
 <h1>Songs</h1>
+<p th:each="song : ${searchResults}" th:text="${song.title()}">
+    placeholder song title
+</p>
 </body>
 </html>
