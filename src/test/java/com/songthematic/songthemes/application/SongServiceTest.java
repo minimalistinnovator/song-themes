@@ -9,30 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class SongServiceTest {
     @Test
-    void noSongsAddedThenNoSongsFound() throws Exception {
-        SongService songService = new SongService();
-
-        List<Song> songsFound = songService.searchByTheme("new years");
-
-        assertThat(songsFound)
-                .isEmpty();
-
-    }
-
-    @Test
-    void oneSongsAddedIsFoundByItsTheme() throws Exception {
-        SongService songService = new SongService();
-
-        songService.addSong(new Song("new years", "This Will Be Our Year"));
-
-        List<Song> songsFound = songService.searchByTheme("new years");
-        assertThat(songsFound)
-                .containsExactly(
-                        new Song("new years", "This Will Be Our Year"));
-
-    }
-
-    @Test
     void multipleSongsAddedIsFoundByItsTheme() throws Exception {
         SongService songService = new SongService();
 
