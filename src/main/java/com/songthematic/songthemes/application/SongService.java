@@ -9,7 +9,7 @@ public class SongService {
     SongSearcher songSearcher;
 
     public SongService() {
-        songSearcher = SongSearcher.withNoSongs("new years");
+        songSearcher = SongSearcher.withNoSongs("blah");
     }
 
     public List<Song> searchByTheme(String theme) {
@@ -17,6 +17,6 @@ public class SongService {
     }
 
     public void addSong(Song song) {
-        this.songSearcher = SongSearcher.withOneSong(song);
+        this.songSearcher = songSearcher.add(song);
     }
 }
