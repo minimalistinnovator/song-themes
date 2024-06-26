@@ -16,7 +16,7 @@ public class SongService {
     }
 
     public SongService(List<Song> songRepository) {
-        songSearcher = SongSearcher.withNoSongs("blah");
+        songSearcher = SongSearcher.createSongSearcher(songRepository);
         this.songRepository = songRepository;
     }
 
