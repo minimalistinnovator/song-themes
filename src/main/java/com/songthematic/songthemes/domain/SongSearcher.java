@@ -33,7 +33,7 @@ public class SongSearcher {
         return createSongSearcher(songs);
     }
 
-    public List<String> byTheme(String requestedTheme) {
+    public List<String> songTitlesByTheme(String requestedTheme) {
         List<Song> matchingSongs = themeToSongsMap.get(requestedTheme.toLowerCase());
 
         if (matchingSongs != null) {
@@ -45,6 +45,12 @@ public class SongSearcher {
 
         return Collections.emptyList();
 
+    }
+
+    public List<Song> byTheme(String requestedTheme) {
+        return themeToSongsMap.getOrDefault(
+                requestedTheme.toLowerCase(),
+                Collections.emptyList());
     }
 
     private static SongSearcher createSongSearcher(Song... songs) {
