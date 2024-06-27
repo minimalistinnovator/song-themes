@@ -29,8 +29,7 @@ class SongServiceTest {
         List<Song> songList = new ArrayList<>();
         songList.add(new Song("Fire", "Baby's On Fire"));
 
-        SongRepository songRepositoryNew = new SongRepository();
-        songRepositoryNew.setSongRepository(songList);
+        SongRepository songRepositoryNew = SongRepository.create(songList);
         SongService songService = new SongService(songRepositoryNew);
 
         List<Song> songsFound = songService.searchByTheme("fire");
@@ -43,8 +42,7 @@ class SongServiceTest {
     void addedSongsAreSavedToRepository() throws Exception {
         List<Song> songList = new ArrayList<>();
         songList.add(new Song("Fire", "Baby's On Fire"));
-        SongRepository songRepositoryNew = new SongRepository();
-        songRepositoryNew.setSongRepository(songList);
+        SongRepository songRepositoryNew = SongRepository.create(songList);
         SongService songService = new SongService(songRepositoryNew);
 
         songService.addSong(new Song("Fire", "Smokestack Lightning"));
