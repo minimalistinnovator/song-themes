@@ -3,20 +3,21 @@ package com.songthematic.songthemes.application;
 import com.songthematic.songthemes.domain.Song;
 import com.songthematic.songthemes.domain.SongSearcher;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SongService {
-    List<Song> songRepository;
+    final SongRepository songRepository;
     SongSearcher songSearcher;
 
     public SongService() {
         songSearcher = SongSearcher.withNoSongs("blah");
-        songRepository = Collections.emptyList();
+        this.songRepository = new SongRepository();
+        this.songRepository.setSongRepository(new ArrayList<>());
     }
 
-    public SongService(List<Song> songRepository) {
-        songSearcher = SongSearcher.createSongSearcher(songRepository);
+    public SongService(SongRepository songRepository) {
+        songSearcher = SongSearcher.createSongSearcher(songRepository.getSongRepository());
         this.songRepository = songRepository;
     }
 
@@ -25,6 +26,7 @@ public class SongService {
     }
 
     public void addSong(Song song) {
+        songRepository.getSongRepository().add(song);
         this.songSearcher = songSearcher.add(song);
     }
 }

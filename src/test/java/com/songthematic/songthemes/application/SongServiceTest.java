@@ -1,7 +1,6 @@
 package com.songthematic.songthemes.application;
 
 import com.songthematic.songthemes.domain.Song;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -27,10 +26,12 @@ class SongServiceTest {
 
     @Test
     void savedSongsLoadedOnStartup() throws Exception {
-        List<Song> songRepository = new ArrayList<>();
-        songRepository.add(new Song("Fire", "Baby's On Fire"));
+        List<Song> songList = new ArrayList<>();
+        songList.add(new Song("Fire", "Baby's On Fire"));
 
-        SongService songService = new SongService(songRepository);
+        SongRepository songRepositoryNew = new SongRepository();
+        songRepositoryNew.setSongRepository(songList);
+        SongService songService = new SongService(songRepositoryNew);
 
         List<Song> songsFound = songService.searchByTheme("fire");
         assertThat(songsFound)
@@ -39,15 +40,16 @@ class SongServiceTest {
     }
 
     @Test
-    @Disabled
     void addedSongsAreSavedToRepository() throws Exception {
-        List<Song> songRepository = new ArrayList<>();
-        songRepository.add(new Song("Fire", "Baby's On Fire"));
-        SongService songService = new SongService(songRepository);
+        List<Song> songList = new ArrayList<>();
+        songList.add(new Song("Fire", "Baby's On Fire"));
+        SongRepository songRepositoryNew = new SongRepository();
+        songRepositoryNew.setSongRepository(songList);
+        SongService songService = new SongService(songRepositoryNew);
 
         songService.addSong(new Song("Fire", "Smokestack Lightning"));
 
-        assertThat(songRepository)
+        assertThat(songRepositoryNew.getSongRepository())
                 .hasSize(2);
     }
 }
