@@ -12,7 +12,7 @@ public class SongService {
 
     public SongService() {
         songSearcher = SongSearcher.withNoSongs("blah");
-        this.songRepository = new SongRepository(new ArrayList<>());
+        this.songRepository = SongRepository.create(new ArrayList<>());
     }
 
     public SongService(SongRepository songRepository) {

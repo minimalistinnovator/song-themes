@@ -15,7 +15,7 @@ public class SongSearcher {
                 .stream(songs)
                 .collect(
                         Collectors.groupingBy(
-                                song -> song.theme().toLowerCase(),
+                                song -> song.themes().stream().findFirst().orElse("").toLowerCase(),
                                 toList())));
     }
 

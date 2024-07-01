@@ -25,6 +25,18 @@ class SongServiceTest {
     }
 
     @Test
+    void songWithMultipleThemesIsFoundByAnyOfThoseThemes() throws Exception {
+        SongService songService = new SongService();
+
+        songService.addSong(new Song(List.of("Christmas", "Halloween"), "Nightmare Before Christmas"));
+
+        List<Song> songsFound = songService.searchByTheme("christmas");
+        assertThat(songsFound)
+                .containsExactly(
+                        new Song("christmas", "Nightmare Before Christmas"));
+    }
+
+    @Test
     void savedSongsLoadedOnStartup() throws Exception {
         List<Song> songList = new ArrayList<>();
         songList.add(new Song("Fire", "Baby's On Fire"));
