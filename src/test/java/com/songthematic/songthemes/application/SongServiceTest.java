@@ -47,7 +47,7 @@ class SongServiceTest {
 
         songService.addSong(new Song("Fire", "Smokestack Lightning"));
 
-        assertThat(songRepositoryNew.getSongRepository())
+        assertThat(songRepositoryNew.allSongs())
                 .hasSize(2);
     }
 }

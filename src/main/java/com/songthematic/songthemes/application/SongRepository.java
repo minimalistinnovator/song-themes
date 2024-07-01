@@ -3,24 +3,29 @@ package com.songthematic.songthemes.application;
 import com.songthematic.songthemes.domain.Song;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class SongRepository {
-    List<Song> songRepository;
+    List<Song> songs;
+
+    public SongRepository() {
+    }
 
     static SongRepository create(List<Song> songList) {
         SongRepository songRepository = new SongRepository();
-        songRepository.setSongRepository(songList);
+        songRepository.setSongs(songList);
         return songRepository;
     }
 
-    public List<Song> getSongRepository() {
-        return songRepository;
+    public Stream<Song> allSongs() {
+        return songs.stream();
     }
 
-    public void setSongRepository(List<Song> songRepository) {
-        this.songRepository = songRepository;
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
     }
 
-    public SongRepository() {
+    void add(Song song) {
+        this.songs.add(song);
     }
 }

@@ -19,7 +19,7 @@ public class SongSearcher {
                                 toList())));
     }
 
-    public static SongSearcher createSongSearcher(List<Song> songs) {
+    public static SongSearcher createSongSearcher(Stream<Song> songs) {
         return new SongSearcher(songs.toArray(Song[]::new));
     }
 

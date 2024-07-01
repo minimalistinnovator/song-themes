@@ -13,11 +13,11 @@ public class SongService {
     public SongService() {
         songSearcher = SongSearcher.withNoSongs("blah");
         this.songRepository = new SongRepository();
-        this.songRepository.setSongRepository(new ArrayList<>());
+        this.songRepository.setSongs(new ArrayList<>());
     }
 
     public SongService(SongRepository songRepository) {
-        songSearcher = SongSearcher.createSongSearcher(songRepository.getSongRepository());
+        songSearcher = SongSearcher.createSongSearcher(songRepository.allSongs());
         this.songRepository = songRepository;
     }
 
@@ -26,7 +26,8 @@ public class SongService {
     }
 
     public void addSong(Song song) {
-        songRepository.getSongRepository().add(song);
+        songRepository.add(song);
         this.songSearcher = songSearcher.add(song);
     }
+
 }
