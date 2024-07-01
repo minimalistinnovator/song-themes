@@ -6,23 +6,19 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class SongRepository {
-    List<Song> songs;
+    private final List<Song> songs;
 
-    public SongRepository() {
+    public SongRepository(List<Song> songList) {
+        this.songs = songList;
     }
 
     static SongRepository create(List<Song> songList) {
-        SongRepository songRepository = new SongRepository();
-        songRepository.setSongs(songList);
+        SongRepository songRepository = new SongRepository(songList);
         return songRepository;
     }
 
     public Stream<Song> allSongs() {
         return songs.stream();
-    }
-
-    public void setSongs(List<Song> songs) {
-        this.songs = songs;
     }
 
     void add(Song song) {
